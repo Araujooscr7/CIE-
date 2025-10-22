@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> CIE - Educação de Jovens e Adultos</title>
+    <style>
+        /* Reset e configurações básicas */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --text-light: #fff;
+        }
+        
+        body {
+            color: var(--text);
+            line-height: 1.6;
+            background-color: #2c3e50;
+        }
+        
+        /* Header e Navegação */
+        header {
+            background-color: var(--primary);
+            color: var(--text-light);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--text-light);
+            padding: 10rem 0 5rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #e7d000;
+        }
+        
+        /* Sobre Nós */
+        .about {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 25%;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Missão e Valores */
+        .mission {
+            padding: 5rem 0;
+            background-color: var(--light);
+        }
+        
+        .mission-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        /* Equipe */
+        .team {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        
+        .member {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            max-width: 250px;
+        }
+        
+        .member-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            border: 3px solid var(--secondary);
+        }
+        
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .member h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .member p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Contato */
+        .contact {
+            padding: 5rem 0;
+            background-color: var(--primary);
+            color: var(--text-light);
+        }
+        
+        .contact-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            margin-right: 1rem;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--text-light);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            margin-bottom: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--text-light);
+            margin: 0 0.5rem;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                padding: 0.8rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+img{
+
+width:35%;
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+		<figure>
+<img src="logo.png">
+</figure>
+</div>
+                <div class="mobile-menu">☰</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#about">Sobre Nós</a></li>
+                        <li><a href="#mission">Missão</a></li>
+                        <li><a href="#team">Equipe</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Educação de Jovens e Adultos</h1>
+            <p>Transformando vidas através da educação, oferecendo oportunidades de aprendizado para todos, independentemente da idade ou trajetória de vida.</p>
+            <a href="#about" class="btn">Conheça Nosso Trabalho</a>
+        </div>
+    </section>
+
+    <!-- Sobre Nós -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sobre Nós</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Somos um grupo de educadores comprometidos com a Educação de Jovens e Adultos (EJA), uma modalidade de ensino que garante o direito à educação para pessoas que não tiveram acesso ou não concluíram os estudos na idade apropriada.</p>
+                    <p>Nossa equipe é formada por profissionais qualificados e apaixonados por educação, que entendem as particularidades e desafios enfrentados pelos alunos da EJA. Trabalhamos para criar um ambiente acolhedor, respeitoso e motivador, onde cada estudante possa desenvolver seu potencial e construir um futuro melhor.</p>
+                    <p>Acreditamos que a educação é um direito de todos e uma ferramenta poderosa para transformação social e pessoal. Por isso, dedicamos nossos esforços para oferecer um ensino de qualidade, contextualizado e significativo para nossos alunos.</p>
+                </div>
+                <div class="about-image">
+                    <img src="GRUPOS T.E E.M - 10.09.2025-2.jpg" alt="Grupo de estudos EJA">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Missão e Valores -->
+    <section class="mission" id="mission">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossa Missão e Valores</h2>
+            </div>
+            <div class="mission-cards">
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3>Missão</h3>
+                    <p>A missão da CIA é garantir o direito à educação a todas as pessoas que, por diferentes motivos, não tiveram acesso ou não conseguiram concluir os estudos na idade adequada. Nosso objetivo é oferecer oportunidades reais de aprendizagem, promovendo a inclusão social, o desenvolvimento pessoal e profissional, e fortalecendo a cidadania dos estudantes. </p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">❤️</div>
+                    <h3>Valores</h3>
+                    <p>Inclusão social - oportunidade para quem não estudou na idade certa.
+
+Flexibilidade - horários adaptados à realidade dos trabalhadores.
+
+Reconhecimento de saberes - valoriza experiências de vida.
+
+
+           Democratização do acesso - educação como direito de todos</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🌟</div>
+                    <h3>Visão</h3>
+                    <p>A visão da EJA entende a educação como um direito humano e um caminho para a liberdade. Mais do que ensinar conteúdos, busca transformar vidas através do conhecimento, valorizando a experiência de cada estudante. É uma ferramenta de inclusão e cidadania que oferece uma segunda chance para quem foi excluído do sistema educacional, formando pessoas críticas e capazes de mudar sua realidade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipe -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossa Equipe</h2>
+            </div>
+            <div class="team-members">
+                <div class="member">
+                    <div class="member-photo">
+                                           </div>
+                    <h4>Agatha Silva</h4>
+                    <p>Institucional</p>
+                </div>
+                <div class="member">
+                    <div class="member-photo">
+                                            </div>
+                    <h4>Alicia Espindola</h4>
+                    <p>Institucional</p>
+                </div>
+                <div class="member">
+                    <div class="member-photo">
+                    </div>
+                    <h4>Kauê Gonzalez</h4>
+                    <p>Desenvolvedor</p>
+                </div>
+                <div class="member">
+                    <div class="member-photo">
+                        
+                    </div>
+                    <h4>Pedro Henrique</h4>
+                    <p>Desenvolvedor</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Entre em Contato</h2>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Informações de Contato</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <p>Rua Carvalho de Freitas,450</p>
+                            <p>Vila Andrade - São Paulo</p>
+                            <p>CEP: 05728-030</p>
+                        </div>
+                    </div>
+             
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <p>cie.services@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div>
+                            <p>Segunda a Sexta: 8h às 18h</p>
+                            <p>Sábado: 8h às 12h</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Envie uma Mensagem</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Assunto</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" aria-label="Facebook">📘</a>
+                <a href="#" aria-label="Instagram">📷</a>
+                <a href="#" aria-label="YouTube">📺</a>
+                <a href="#" aria-label="Twitter">🐦</a>
+            </div>
+            <p>&copy; 2023 Grupo EJA - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+        
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('nav ul').classList.remove('show');
+            });
+        });
+        
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
